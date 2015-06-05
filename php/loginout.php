@@ -47,7 +47,7 @@ function loginout_func($atts){
 	  global $current_user;
       get_currentuserinfo();
 
-      $res .= 'Innlogget som: ' . $current_user->user_login . "\n";
+      $res .= 'Innlogget som: ' . $current_user->user_login . ".\n";
       $res .= 'Epost: ' . $current_user->user_email . "\n";
       $res .= 'Tilganger: ' . list_user_groups();
       /*
