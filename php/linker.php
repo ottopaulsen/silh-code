@@ -127,13 +127,13 @@ function linker_func($atts){
 function install_linker() 
 {
 
-     wp_enqueue_script( 'fjern_link_handle', plugins_url() . '/silh_code/js/linker.js', array('jquery'), null);
+     wp_enqueue_script( 'fjern_link_handle', plugins_url() . '/silh-code/js/linker.js', array('jquery'), null);
      wp_localize_script( 'fjern_link_handle', 'fjern_link_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 
-     wp_enqueue_script( 'move_link_up_handle', plugins_url() . '/silh_code/js/linker.js', array('jquery'), null);
+     wp_enqueue_script( 'move_link_up_handle', plugins_url() . '/silh-code/js/linker.js', array('jquery'), null);
      wp_localize_script( 'move_link_up_handle', 'move_link_up_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 
-     wp_enqueue_script( 'move_link_down_handle', plugins_url() . '/silh_code/js/linker.js', array('jquery'), null);
+     wp_enqueue_script( 'move_link_down_handle', plugins_url() . '/silh-code/js/linker.js', array('jquery'), null);
      wp_localize_script( 'move_link_down_handle', 'move_link_down_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 
 }

@@ -17,7 +17,7 @@
 function install_showhide() 
 {
 
-     wp_enqueue_script( 'toggle_showhide_handle', plugins_url() . '/silh_code/js/showhide.js', array('jquery'), null);
+     wp_enqueue_script( 'toggle_showhide_handle', plugins_url() . '/silh-code/js/showhide.js', array('jquery'), null);
      wp_localize_script( 'toggle_showhide_handle', 'toggle_showhide_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 
 }
