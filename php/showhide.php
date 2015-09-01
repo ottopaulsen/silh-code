@@ -1,4 +1,4 @@
-    <?php
+<?php
 /**
  * Description: Vis/skjul innhold bare ved å klikke på en link.
  * Author: Otto Paulsen

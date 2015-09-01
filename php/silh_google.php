@@ -1,4 +1,4 @@
-    <?php
+<?php
 /**
  * Description: Kode for SIL Håndball. (http://justintadlock.com/archives/2011/02/02/creating-a-custom-functions-plugin-for-end-users)
  * Author: Otto Paulsen

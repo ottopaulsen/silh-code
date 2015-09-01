@@ -1,4 +1,4 @@
-    <?php
+<?php
 /**
  * Description: Kode for menyene.
  * Author: Otto Paulsen

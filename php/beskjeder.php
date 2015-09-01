@@ -1,4 +1,4 @@
-    <?php
+<?php
 /**
  * Description: Kode for SIL Håndball. 
  * Kode for beskjedmodulen på lagsidene

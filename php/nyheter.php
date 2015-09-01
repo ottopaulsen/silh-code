@@ -1,4 +1,4 @@
-    <?php
+<?php
 /**
  * Description: Kode for SIL Håndball. 
  * Author: Otto Paulsen
