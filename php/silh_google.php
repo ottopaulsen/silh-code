@@ -16,7 +16,7 @@
 */
 add_shortcode( 'GoogleKalender', 'googleKalender_func' );
 add_shortcode( 'GoogleKalenderMnd', 'googleKalender_func' );
-function googleKalender_func($atts, $tag){
+function googleKalender_func($atts){
     $res = "";
 
     extract(shortcode_atts(array('kalender_id' => 'Kalender-ID'), $atts));

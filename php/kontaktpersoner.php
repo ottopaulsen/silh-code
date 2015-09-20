@@ -77,7 +77,7 @@ function lagfordeling_func($atts){
         } else {
             $table = TablePress::$controller->model_table->load( 4 );
             $data = $table['data'];
-            //$lagene = '';
+            $lagene = '';
             foreach ($data as &$row) {
                 if($row[0] == $lag_id) {
                     if ($lagene) {

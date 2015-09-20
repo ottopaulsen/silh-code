@@ -26,6 +26,8 @@
    Date:   21.04.2014
 */
 
+
+
 require_once dirname( __FILE__ ) .'/php/access_control.php';
 require_once dirname( __FILE__ ) .'/php/loginout.php';
 require_once dirname( __FILE__ ) .'/php/silh_google.php';
@@ -189,6 +191,20 @@ function lagsidefooter_func($atts){
     $res .= sistendret_func();
     $res .= '</span>';
     return $res;
+}
+
+
+# Log function to use the WP debug log
+if (!function_exists('write_log')) {
+    function write_log ( $log )  {
+        if ( true === WP_DEBUG ) {
+            if ( is_array( $log ) || is_object( $log ) ) {
+                error_log( print_r( $log, true ) );
+            } else {
+                error_log( $log );
+            } 
+        }
+    }
 }
 
 

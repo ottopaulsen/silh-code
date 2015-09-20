@@ -11,7 +11,10 @@
 
 add_filter( 'nav_menu_css_class', 'namespace_menu_classes', 10, 2 );
 function namespace_menu_classes( $classes , $item ){
-    $meny = $_GET['meny']; 
+    if (isset($_GET['meny']))
+        $meny = $_GET['meny'];
+    else 
+        $meny = '';
     if($meny) {
         $pages = get_post_ancestors($meny);
         $pages[] = $meny;

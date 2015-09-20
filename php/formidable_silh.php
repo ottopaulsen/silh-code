@@ -47,7 +47,9 @@ function return_page($url, $form, $params){
         Form id 23 - Linker. Input for link-felt.
 */
 add_action('frm_after_create_entry', 'formidableHookSave', 10, 2);
+add_action('frm_after_update_entry', 'formidableHookSave', 10, 2);
 function formidableHookSave($entry_id, $form_id){
+    write_log('formidableHookSave(' . $entry_id . ', ' . $form_id . ') called');
     if($form_id == 18){ 
         if(isset($_POST['item_meta'][171])) 
             $kalender_var = $_POST['item_meta'][171];
@@ -93,6 +95,11 @@ function formidableHookSave($entry_id, $form_id){
             $gruppe = $_POST['item_meta'][199];
         leggInnLink($side_id, $gruppe, $tekst, $url, $egetvindu);
         //wp_redirect( get_page_link($side_id), 201);
+    } elseif ($form_id == 13) {
+        if(isset($_POST['item_meta'][212]))
+            $side_id = $_POST['item_meta'][212];
+        write_log('formidableHookSave side_id = ' . $side_id);
+        w3tc_pgcache_flush();
     }
 }
 

@@ -79,7 +79,9 @@ function treningstider_func($atts){
 	    }
     }
 
-    array_multisort($tider, SORT_NATURAL, $sorter);
+    //array_multisort($tider, SORT_ASC, SORT_NATURAL, $sorter);
+    array_multisort($sorter, SORT_ASC, $tider);
+
 
     $odd = true;
     foreach ($tider as $t) {

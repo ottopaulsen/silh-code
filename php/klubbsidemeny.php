@@ -24,7 +24,13 @@ function klubbsidemeny_func($atts){
     extract(shortcode_atts(array('visurlmeny' => 'ja'), $atts)); // Vis meny som angitt i URL (Sett nei for å skjule)
     extract(shortcode_atts(array('h' => '3'), $atts)); // Skriftstørrelse. Bruker angitt "h" tag
 
-    $meny = $_GET['meny']; // Meny angitt i URL for å få med meny på alle undersider
+    if (isset($_GET['meny']))
+        $meny = $_GET['meny']; // Meny angitt i URL for å få med meny på alle undersider
+    else 
+        $meny = '';
+
+    $ekstra_menysider = '';
+
 
 
     $visBilde = ($bilde === 'ja');
@@ -113,6 +119,8 @@ function klubbsidemeny_func($atts){
         $direktelink = get_post_meta( $page->ID, 'direktelink', true ); // Brukes på dummy-sider for å få direkteloin i menyen, f.eks. til arrangement cup
         $menytekst = get_post_meta( $page->ID, 'menytekst', true ); // Overstyr tittel i menyen hvis overskrifta er for lang
         $title = $menytekst ? $menytekst : $page->post_title;
+        $extraPadding = '';
+        $beskrivelse_tekst = '';
 
         $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($page->ID), 'thumbnail' );
         $bildeUrl = $thumb['0'];
