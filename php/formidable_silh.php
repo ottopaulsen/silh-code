@@ -8,6 +8,7 @@
 
 /* Place custom code below this line. */
 
+
 add_filter('frm_redirect_url', 'return_page', 10, 2);
 function return_page($url, $form, $params){
   if(!isset($params['action'])){
@@ -41,6 +42,7 @@ function return_page($url, $form, $params){
 
 /*
     Hook for innsending av Formidable Forms.
+        Form id  9 - Beskjed til laget
         Form id 18 - Google Kalender-ID brukes for å legge inn Google Kalender-ID på siden. Verdien lagres i variabel.
         Form id 19 - Google Skjema-ID brukes for å legge inn Google Skjema-ID på siden. Verdien lagres i variabel.
         Form id 22 - Tekstfelt. Input for brukervennlig tekstfelt. Verdien lagres i variabel.
@@ -49,7 +51,8 @@ function return_page($url, $form, $params){
 add_action('frm_after_create_entry', 'formidableHookSave', 10, 2);
 add_action('frm_after_update_entry', 'formidableHookSave', 10, 2);
 function formidableHookSave($entry_id, $form_id){
-    write_log('formidableHookSave(' . $entry_id . ', ' . $form_id . ') called');
+    //write_log('formidableHookSave(' . $entry_id . ', ' . $form_id . ') called');
+    $side_id = '';
     if($form_id == 18){ 
         if(isset($_POST['item_meta'][171])) 
             $kalender_var = $_POST['item_meta'][171];
@@ -95,12 +98,8 @@ function formidableHookSave($entry_id, $form_id){
             $gruppe = $_POST['item_meta'][199];
         leggInnLink($side_id, $gruppe, $tekst, $url, $egetvindu);
         //wp_redirect( get_page_link($side_id), 201);
-    } elseif ($form_id == 13) {
-        if(isset($_POST['item_meta'][212]))
-            $side_id = $_POST['item_meta'][212];
-        write_log('formidableHookSave side_id = ' . $side_id);
-        w3tc_pgcache_flush();
     }
+    
 }
 
 
