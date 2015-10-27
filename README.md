@@ -2,11 +2,6 @@
 SIL Håndball Nettsted Plugin
 
 
-## TO DO Otto
-
-Skriv de viktigste kommandoene her.
-
-
 ## Git
 
 [Git-bok](https://git-scm.com/book/en/v2)
