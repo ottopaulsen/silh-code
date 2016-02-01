@@ -6,7 +6,7 @@
  Author: Otto Paulsen
  GitHub Plugin URI: https://github.com/ottopaulsen/silh-code
  GitHub Branch: Prod
- Version: 2.0.15
+ Version: 2.0.16
  */
 
 

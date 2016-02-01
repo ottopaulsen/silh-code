@@ -18,7 +18,7 @@ function beskjeder_func($atts){
     if(!$lag_id) $lag_id = get_post_meta( get_the_ID(), 'lag_id', true );
 
     if ($lag_id) :
-        $ret = do_shortcode('<p>[Legg inn beskjed lag_id=' . $lag_id . ']</p><br/>');
+        $ret = do_shortcode('<p>[LeggInnBeskjed lag_id=' . $lag_id . ']</p><br/>');
         $ret .= FrmProDisplaysController::get_shortcode(array('id' => 530, 'lag_id' => $lag_id));
     else :
         $ret = '<h2>Beskjeder</h2>';
@@ -31,7 +31,7 @@ function beskjeder_func($atts){
 }
 
 // Vis link for å legge inn beskjed for bruker med skriverettighet
-add_shortcode( 'Legg inn beskjed', 'legginnbeskjed_func' );
+add_shortcode( 'LeggInnBeskjed', 'legginnbeskjed_func' );
 function legginnbeskjed_func($atts){
     extract(shortcode_atts(array('lag_id' => ''), $atts));
     if(!$lag_id) $lag_id = get_post_meta( get_the_ID(), 'lag_id', true );
