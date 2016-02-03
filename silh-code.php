@@ -6,7 +6,7 @@
  Author: Otto Paulsen
  GitHub Plugin URI: https://github.com/ottopaulsen/silh-code
  GitHub Branch: Prod
- Version: 2.0.17
+ Version: 2.0.18
  */
 
 
@@ -157,7 +157,7 @@ function sistendret_func(){
 
 
 // Gir en dato som er 60 dager fram i tid. Kan endres med dager=x.
-add_shortcode( 'Default dato', 'defaultdato_func' );
+add_shortcode( 'Default_dato', 'defaultdato_func' );
 function defaultdato_func($atts){
     $res = '';
     extract(shortcode_atts(array('dager' => '60'), $atts));
@@ -167,7 +167,7 @@ function defaultdato_func($atts){
 
 
 // Returner link til forrige side
-add_shortcode( 'Forrige side', 'forrigeside_func' );
+add_shortcode( 'Forrige_side', 'forrigeside_func' );
 function forrigeside_func($atts){
     return $_SERVER['HTTP_REFERER'];
 }
