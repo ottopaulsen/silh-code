@@ -6,7 +6,7 @@
  Author: Otto Paulsen
  GitHub Plugin URI: https://github.com/ottopaulsen/silh-code
  GitHub Branch: Prod
- Version: 2.0.16
+ Version: 2.0.17
  */
 
 
@@ -133,7 +133,7 @@ function listpages_func($atts){
 }
 
    
-add_shortcode( 'Klubbside header', 'klubbsideHeader_func' );
+add_shortcode( 'Klubbside_header', 'klubbsideHeader_func' );
 function klubbsideHeader_func($atts){
     return '<h1>' . get_the_title(get_the_ID()) . '</h1>';
 }   
