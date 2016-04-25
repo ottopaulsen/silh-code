@@ -141,15 +141,13 @@ function lagenes_kontaktliste_func($atts){
     array_multisort($lag_arr, SORT_NATURAL, $data);
 
 
-    $rowcount = 0;
     $odd = true;
     foreach ($data as &$row) {
         $lag_id = $row[0];
         $lag = $row[1];
-        if($rowcount > 0 and $lag != "" and $lag_id != ""){
+        if($lag != "" and $lag_id != ""){
             $res = $res . '<tr class="' . ($odd ? 'odd' : 'even') . '"><td>' . $lag . '</td><td>' . list_kontaktpersoner($lag_id, array('Hovedtrener', 'Trener', 'Foreldrekontakt')) . '</td></tr>';
         }
-        $rowcount++;
         $odd = !$odd;
     }
 
