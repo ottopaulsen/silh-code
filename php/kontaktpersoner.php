@@ -146,7 +146,7 @@ function lagenes_kontaktliste_func($atts){
         $lag_id = $row[0];
         $lag = $row[1];
         if($lag != "" and $lag_id != ""){
-            $res = $res . '<tr class="' . ($odd ? 'odd' : 'even') . '"><td>' . $lag . '</td><td>' . list_kontaktpersoner($lag_id, array('Hovedtrener', 'Trener', 'Foreldrekontakt')) . '</td></tr>';
+            $res = $res . '<tr class="' . ($odd ? 'odd' : 'even') . '"><td>' . $lag . '</td><td>' . list_kontaktpersoner($lag_id, array('Hovedtrener', 'Trener', 'Foreldrekontakt', 'Hjelpetrener')) . '</td></tr>';
         }
         $odd = !$odd;
     }
