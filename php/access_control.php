@@ -15,9 +15,9 @@ function silhUserCanEdit($page = 0) {
 
     if ($page == 0) $page = get_the_ID();
     
-    global $userAccessManager;
-    if (isset($userAccessManager)) :
-        $uamAccessHandler = $userAccessManager->getAccessHandler();
+    global $oUserAccessManager;
+    if (isset($oUserAccessManager)) :
+        $uamAccessHandler = $oUserAccessManager->getAccessHandler();
 	    $oCurrentUser = $uamAccessHandler->getUserAccessManager()->getCurrentUser();
         $aUserGroupsForPage = $uamAccessHandler->getUserGroupsForObject('page', $page);
         $aUserGroupsForUser = $uamAccessHandler->getUserGroupsForObject('user', $oCurrentUser->ID);
@@ -44,9 +44,9 @@ function silhUserCanEdit($page = 0) {
 function silhUserInGroup($groups) {
     $userInGroup = FALSE; 
     
-    global $userAccessManager;
-    if (isset($userAccessManager)) :
-        $uamAccessHandler = $userAccessManager->getAccessHandler();
+    global $oUserAccessManager;
+    if (isset($oUserAccessManager)) :
+        $uamAccessHandler = $oUserAccessManager->getAccessHandler();
         $oCurrentUser = $uamAccessHandler->getUserAccessManager()->getCurrentUser();
         $aUserGroupsForUser = $uamAccessHandler->getUserGroupsForObject('user', $oCurrentUser->ID);
 
@@ -115,9 +115,9 @@ function sideredaktorer_func($atts){
 
     $isFirst = true;
 
-    global $userAccessManager;
-    if (isset($userAccessManager)) :
-        $uamAccessHandler = $userAccessManager->getAccessHandler();
+    global $oUserAccessManager;
+    if (isset($oUserAccessManager)) :
+        $uamAccessHandler = $oUserAccessManager->getAccessHandler();
         $aUserGroupsForPage = $uamAccessHandler->getUserGroupsForObject('page', get_the_ID());
 
         foreach ($aUserGroupsForPage as $pageGroups) {
