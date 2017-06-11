@@ -64,8 +64,9 @@ function treningstider_func($atts){
 
     $res .= '</tr></thead><tbody>';
 
-
-
+    $sorter[] = [];
+    $tider[] = [];
+    
     foreach ( $entries as $entry ) {
         $lag = $frm_entry_meta->get_entry_meta_by_field($entry->id, 125, true);
         if (!$lag_id or $lag == $lag_id) {
