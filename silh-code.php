@@ -5,7 +5,7 @@
  Description: Kode for SIL Håndball.
  Author: Otto Paulsen
  GitHub Plugin URI: https://github.com/ottopaulsen/silh-code
- GitHub Branch: master
+ GitHub Branch: prod
  Version: 2.0.27
  */
 
