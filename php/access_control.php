@@ -15,16 +15,14 @@ function silhUserCanEdit($page = 0) {
 
     if ($page == 0) $page = get_the_ID();
     
-    global $oUserAccessManager;
-    if (isset($oUserAccessManager)) :
-        $uamAccessHandler = $oUserAccessManager->getAccessHandler();
-	    $oCurrentUser = $uamAccessHandler->getUserAccessManager()->getCurrentUser();
-        $aUserGroupsForPage = $uamAccessHandler->getUserGroupsForObject('page', $page);
-        $aUserGroupsForUser = $uamAccessHandler->getUserGroupsForObject('user', $oCurrentUser->ID);
+    global $userAccessManager;
+    if (isset($userAccessManager)) :
+        $aUserGroupsForPage = $userAccessManager->getUserGroupHandler()->getUserGroupsForObject('page', $page);
+        $aUserGroupsForUser = $userAccessManager->getUserGroupHandler()->getUserGroupsForObject('_user_', get_current_user_id());
 
         foreach ($aUserGroupsForPage as $pageGroups) {
         	foreach ($aUserGroupsForUser as $userGroups) {
-        		if ($userGroups->getGroupName() == $pageGroups->getGroupName()) {
+        		if ($userGroups->getName() == $pageGroups->getName()) {
         			$userCanWrite = TRUE;
         		}
         	}
@@ -44,15 +42,13 @@ function silhUserCanEdit($page = 0) {
 function silhUserInGroup($groups) {
     $userInGroup = FALSE; 
     
-    global $oUserAccessManager;
-    if (isset($oUserAccessManager)) :
-        $uamAccessHandler = $oUserAccessManager->getAccessHandler();
-        $oCurrentUser = $uamAccessHandler->getUserAccessManager()->getCurrentUser();
-        $aUserGroupsForUser = $uamAccessHandler->getUserGroupsForObject('user', $oCurrentUser->ID);
+    global $userAccessManager;
+    if (isset($userAccessManager)) :
+        $aUserGroupsForUser = $userAccessManager->getUserGroupHandler()->getUserGroupsForObject('_user_', get_current_user_id());
 
         foreach ($groups as $group) {
             foreach ($aUserGroupsForUser as $userGroups) {
-                if ($userGroups->getGroupName() == $group) {
+                if ($userGroups->getName() == $group) {
                     $userInGroup = TRUE;
                 }
             }
@@ -106,7 +102,8 @@ function ifuseringroup_func($atts, $content){
 
 
 // List brukere som kan redigere siden
-add_shortcode( 'sideredaktorer', 'sideredaktorer_func' );
+add_shortcode('sideredaktorer', 'sideredaktorer_func');
+
 function sideredaktorer_func($atts){
 
     $res = "" ;
@@ -115,15 +112,16 @@ function sideredaktorer_func($atts){
 
     $isFirst = true;
 
-    global $oUserAccessManager;
-    if (isset($oUserAccessManager)) :
-        $uamAccessHandler = $oUserAccessManager->getAccessHandler();
-        $aUserGroupsForPage = $uamAccessHandler->getUserGroupsForObject('page', get_the_ID());
+    global $userAccessManager;
+    if (isset($userAccessManager)) :
+        $aUserGroupsForPage = $userAccessManager->getUserGroupHandler()->getUserGroupsForObject('page', get_the_ID());
 
         foreach ($aUserGroupsForPage as $pageGroups) {
-        	$aUsers = $pageGroups->getFullUsers();
-            foreach ($aUsers as $user) {
-                $userdata = get_userdata($user->id);
+            $aUsers = $pageGroups->getFullUsers();
+            
+            foreach ($aUsers as $userId => $user) {
+                $userdata = get_userdata($userId);
+                
                 if($isFirst) {
                     $isFirst = false;
                 } else {
