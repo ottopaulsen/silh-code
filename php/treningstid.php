@@ -34,14 +34,10 @@ function treningstider_func($atts){
 	
 	//return "";
 
-    global $frm_entry, $frm_entry_meta;
-
     extract(shortcode_atts(array('lag_id' => ''), $atts));
     if(!$lag_id) $lag_id = get_post_meta( get_the_ID(), 'lag_id', true );
 
-    //$entries = $frm_entry->getAll("it.form_id=13");
 	$entries = FrmEntry::getAll("it.form_id=13");
-	
 
     $dayOrder = array('Mandag'=>1,
     	              'Tirsdag'=>2,
@@ -84,22 +80,6 @@ function treningstider_func($atts){
 	    }
     }
 
-	/*
-    foreach ( $entries as $entry ) {
-        $lag = $frm_entry_meta->get_entry_meta_by_field($entry->id, 125, true);
-        if (!$lag_id or $lag == $lag_id) {
-	        $dag = $frm_entry_meta->get_entry_meta_by_field($entry->id, 120, true);
-	        $sted = $frm_entry_meta->get_entry_meta_by_field($entry->id, 112, true);
-	        $tid = $frm_entry_meta->get_entry_meta_by_field($entry->id, 111, true);
-
-	        $sort = $dayOrder[$dag] . $sted . $tid . $lag;
-	        $sorter[] = $sort;
-	        $tider[] = array('dag' => $dag, 'sted' => $sted, 'tid' => $tid, 'lag' => $lag, 'id' => $entry->id);
-	    }
-    }
-	*/
-	
-	
     //array_multisort($tider, SORT_ASC, SORT_NATURAL, $sorter);
     array_multisort($sorter, SORT_ASC, $tider);
 

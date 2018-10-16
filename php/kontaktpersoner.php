@@ -17,7 +17,7 @@ function list_kontaktpersoner($lag_id, $roller){
             $res .= $row->name . $row->lag;    
         }
     }
-    $res = '[display-frm-data id=2458 filter=1 lag_id="' . $lag_id . '" rolle="Foreldrekontakt"]';
+    $res = '[display-frm-data id=2458 filter=limited lag_id="' . $lag_id . '" rolle="Foreldrekontakt"]';
     return do_shortcode($res);
 }
 
@@ -28,7 +28,7 @@ function kontaktpersoner_func($atts){
     if(!$lag_id) $lag_id = get_post_meta( get_the_ID(), 'lag_id', true );
 	if ( $lag_id ) :
 	  $ret = FrmProDisplaysController::get_shortcode(array('id' => 497, 'lag_id' => $lag_id));
-      $ret .= do_shortcode('<p>[Legg_inn_kontaktperson lag_id=' . $lag_id . ']</p><br/>');
+      $ret .= do_shortcode('<p>[legginnkontaktperson filter=limited lag_id=' . $lag_id . ']</p><br/>');
 	else :
 	  $ret = '<h2>Kontaktpersoner</h2>';
 	  $ret .= 'Denne modulen heter "Kontaktpersoner" og skal brukes for å vise lagets kontaktpersoner.';
@@ -39,7 +39,7 @@ function kontaktpersoner_func($atts){
 	return $ret;
 }
    
-add_shortcode( 'Legg_inn_kontaktperson', 'leggInnKontaktperson_func' );
+add_shortcode( 'legginnkontaktperson', 'leggInnKontaktperson_func' );
 function leggInnKontaktperson_func($atts){
     extract(shortcode_atts(array('lag_id' => ''), $atts));
     if(!$lag_id) $lag_id = get_post_meta( get_the_ID(), 'lag_id', true );
@@ -73,7 +73,7 @@ function lagfordeling_func($atts){
     
     if ($lag_id){
         if ($lag_id == 'all') {
-            $res = do_shortcode('[table id=4]');
+            $res = do_shortcode('[table filter=limited id=4]');
         } else {
             $table = TablePress::$controller->model_table->load( 4 );
             $data = $table['data'];
@@ -164,18 +164,16 @@ function epostliste_func($atts){
 
     $roller = explode(",", $rolle);
     
-    global $frm_entry, $frm_entry_meta;
-
     $res = '<a href="mailto:';
 
-    $entries = $frm_entry->getAll("it.form_id=2");
+    $entries = FrmEntry::getAll("it.form_id=2");
 
     $count = 0;
 
     foreach ( $entries as $entry ) {
-        $roll = $frm_entry_meta->get_entry_meta_by_field($entry->id, 11, true);
+        $roll = FrmEntryMeta::get_entry_meta_by_field($entry->id, 11, true);
         if ( in_array($roll, $roller) or strtolower($rolle) == 'alle') {
-            $epost = $frm_entry_meta->get_entry_meta_by_field($entry->id, 10, true);
+            $epost = FrmEntryMeta::get_entry_meta_by_field($entry->id, 10, true);
             $count += 1;
             $res .= $epost . ($count > 0 ? ',' : '');            
         }
