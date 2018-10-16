@@ -27,7 +27,7 @@ function kontaktpersoner_func($atts){
     extract(shortcode_atts(array('lag_id' => ''), $atts));
     if(!$lag_id) $lag_id = get_post_meta( get_the_ID(), 'lag_id', true );
 	if ( $lag_id ) :
-	  $ret = FrmProDisplaysController::get_shortcode(array('id' => 497, 'lag_id' => $lag_id));
+	  $ret = FrmProDisplaysController::get_shortcode(array('id' => 497, 'lag_id' => $lag_id, 'filter' => 'limited'));
       $ret .= do_shortcode('<p>[legginnkontaktperson filter=limited lag_id=' . $lag_id . ']</p><br/>');
 	else :
 	  $ret = '<h2>Kontaktpersoner</h2>';
